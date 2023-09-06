@@ -2,7 +2,11 @@
 
 from chatterbot import ChatBot
 
-chatbot = ChatBot("Chatpot")
+chatbot = ChatBot(
+    'MyBot',
+    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+    database_uri='mongodb://localhost:27017/chatterbot-database'
+)
 
 exit_conditions = (":q", "quit", "exit")
 while True:
