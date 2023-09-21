@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+admin.site.site_header = 'Ask Jarvis'
+admin.sites.AdminSite.site_title = 'Administration'
+admin.sites.AdminSite.index_title = 'Ask Jarvis - Administration'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
