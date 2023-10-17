@@ -2,3 +2,5 @@
 Lib
 Scripts
 venv
+.pyc
+__pycache__
