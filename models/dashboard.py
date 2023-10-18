@@ -3,7 +3,8 @@ from app import mongo
 
 def getTotalStatements():
     statements = mongo.db.statements
-    return statements.find().count()
+    filtered = statements.find({ 'in_response_to': { '$exists': True, '$ne': None } })
+    return filtered.count()
 
 def getYearsList():
     statements = mongo.db.statements
