@@ -45,12 +45,20 @@
                         <span class="hide-menu">Data Sets</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{url_for('admin_blueprint.javis_tags')}}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-tags"></i>
+                        </span>
+                        <span class="hide-menu">Tags</span>
+                    </a>
+                </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">SCRAPING</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{url_for('admin_blueprint.new_scrapper')}}" aria-expanded="false">
                         <span>
                             <i class="ti ti-world-www"></i>
                         </span>
@@ -58,7 +66,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{url_for('admin_blueprint.scrapper_settings')}}" aria-expanded="false">
                         <span>
                             <i class="ti ti-settings"></i>
                         </span>

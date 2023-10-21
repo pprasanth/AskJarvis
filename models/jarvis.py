@@ -10,3 +10,11 @@ def listAll(search="", pageNo = 1):
         queryString = { 'in_response_to': { '$exists': True, '$ne': None } }
     filtered = statements.find(queryString)
     return filtered.count(), list(filtered.skip(skip).limit(10))
+
+def create_new_tag(tageName):
+    tags = mongo.db.tags
+    tags.insert({
+        'id': tags.count() + 1,
+        'name': tageName
+    })
+    return True
