@@ -19,24 +19,26 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
+            <h5 class="card-title fw-semibold mb-4">Tags</h5>
+            {% if success_message %}
+              <div class="alert alert-success" role="alert">
+                {{success_message}}
+              </div>
+            {% endif %}
+            {% if error_message %}
+              <div class="alert alert-danger" role="alert">
+                {{error_message}}
+              </div>
+            {% endif %}
             <div class="card">
               <div class="card-body">
-                <form>
+                <form action="{{url_for('admin_blueprint.save_tags')}}" method="POST">
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <label for="tag" class="form-label">Tag name</label>
+                    <input type="text" class="form-control" id="tag" aria-describedby="tagHelp" name="tag">
+                    <div id="tagHelp" class="form-text">Tag for Jarvis training</div>
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Create New</button>
                 </form>
               </div>
             </div>
@@ -52,5 +54,4 @@
   <script src="/static/js/app.min.js"></script>
   <script src="/static/libs/simplebar/dist/simplebar.js"></script>
 </body>
-
 </html>
