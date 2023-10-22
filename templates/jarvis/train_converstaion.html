@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASK JARVIS - Train JARVIS</title>
+  <link rel="shortcut icon" type="image/png" href="/static/images/logos/favicon.ico" />
+  <link rel="stylesheet" href="/static/css/styles.min.css" />
+  <link rel="stylesheet" href="/static/css/custom.css" />
+</head>
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    {% include 'sidebar.html' %}
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      {% include 'header.html' %}
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Train Jarvis</h5>
+            <div class="card">
+              <div class="card-body">
+                <form action="{{url_for('admin_blueprint.save_jarvis_conversation')}}" method="POST">
+                  <div id="load_more_chat"></div>
+                  <div class="form-group row mariginBottom">
+                    <button type="button" class="btn btn-outline-dark m-1 col-12" onclick="load_more_chat()"><span><i class="ti ti-message-2"></i></span>Add</button>
+                  </div>
+                  <div class="form-group row mariginBottom">
+                    <button type="submit" class="btn btn-outline-primary m-1">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% include 'footer.html' %}
+      </div>
+    </div>
+  </div>
+  <script src="/static/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/static/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/sidebarmenu.js"></script>
+  <script src="/static/js/app.min.js"></script>
+  <script src="/static/libs/simplebar/dist/simplebar.js"></script>
+  <script type="text/javascript">
+    var inc = 0;
+    function load_more_chat() {
+      inc = inc + 1;
+      $.ajax({
+        url: "{{url_for('admin_blueprint.load_more_chat')}}?inc="+inc,
+        success: function(html) {
+            $('#load_more_chat').append(html);
+        }
+      });
+    };
+    $(function() {
+      $.ajax({
+        url: "{{url_for('admin_blueprint.load_more_chat')}}?inc="+inc,
+        success: function(html) {
+            $('#load_more_chat').html(html);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

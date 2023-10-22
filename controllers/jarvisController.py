@@ -1,7 +1,11 @@
 from flask import render_template, redirect, request, url_for
-from models.jarvis import JarvisModel
+from chatterbot.trainers import ListTrainer
+
+from app import ask_jarvis
 
 from utils.helper import paginate
+
+from models.jarvis import JarvisModel
 
 class JavisController():
     def list():
@@ -67,3 +71,20 @@ class JavisController():
         else:
           error_message = "Invalid submission"
           return redirect(url_for('admin_blueprint.javis_tags', error_message=error_message))
+        
+    def train_conversation():
+        return render_template('jarvis/train_converstaion.html')
+    
+    def load_more_chat():
+        input_var = request.args.get('inc')
+        return render_template('jarvis/load_more_chat.html', input_var=input_var)
+    
+    def save_jarvis_conversation():
+        trainer = ListTrainer(ask_jarvis)
+        training_data = []
+        for index, value in enumerate(request.form):
+            training_data.append(request.form[value])
+        
+        trainer.train(training_data)
+        success_message = "Trained conversation"
+        return redirect(url_for('admin_blueprint.list', success_message=success_message))
