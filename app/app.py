@@ -1,10 +1,17 @@
 from flask import Flask
 from flask_pymongo import PyMongo
 from flask_session import Session
+from chatterbot import ChatBot
 
 app = Flask(__name__)  # flask app object
 app.config.from_object('config')  # Configuring from Python Files
 mongo = PyMongo(app)
+
+ask_jarvis = ChatBot(
+        'AskJarvis',
+        storage_adapter=app.config['STORAGE_ADAPTER'],
+        database_uri=app.config['MONGO_URI']
+    )
 
 Session(app)
 
