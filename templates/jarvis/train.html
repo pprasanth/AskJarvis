@@ -19,28 +19,48 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
+            <h5 class="card-title fw-semibold mb-4">Train Jarvis</h5>
             <div class="card">
               <div class="card-body">
-                <form>
+                <form action="{{url_for('admin_blueprint.save_jarvis')}}" method="POST">
                   <div class="mb-3">
-                    <label for="exampleDataList" class="form-label">Datalist example</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                    <label for="in_response_to" class="form-label">Question</label>
+                    <input type="text" name="in_response_to" class="form-control" id="in_response_to">
+                  </div>
+                  <div class="mb-3">
+                    <label for="search_in_response_to" class="form-label">Search in response to</label>
+                    <input type="text" name="search_in_response_to" class="form-control" id="search_in_response_to">
+                  </div>
+                  <div class="mb-3">
+                    <label for="conversation" class="form-label">Conversation</label>
+                    <select class="form-select" name="conversation" aria-label="select">
+                      <option value="training" selected>Training</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="text" class="form-label">Bot response</label>
+                    <input class="form-control" name="text" list="datalistOptions" id="text" placeholder="">
                     <datalist id="datalistOptions">
-                      <option value="San Francisco">
-                      <option value="New York">
-                      <option value="Seattle">
-                      <option value="Los Angeles">
-                      <option value="Chicago">
+                      {% for bot in bot_responses %}
+                      <option value="{{bot.response}}">
+                      {% endfor %}
                     </datalist>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="search_text" class="form-label">Search Text</label>
+                    <input type="text" name="search_text" class="form-control" id="search_text">
                   </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  <div class="mb-3">
+                    <label for="persona" class="form-label">Persona</label>
+                    <input type="text" name="persona" class="form-control" id="persona">
+                  </div>
+                  <div class="mb-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <select class="form-select" name="tags" multiple aria-label="multiple select">
+                      {% for tag in tags %}
+                      <option value="{{tag.name}}">{{tag.name}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
