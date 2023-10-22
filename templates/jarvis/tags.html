@@ -7,6 +7,8 @@
   <title>ASK JARVIS - Train JARVIS</title>
   <link rel="shortcut icon" type="image/png" href="/static/images/logos/favicon.ico" />
   <link rel="stylesheet" href="/static/css/styles.min.css" />
+  <link rel="stylesheet" href="/static/css/custom.css" />
+  <link rel="stylesheet" href="/static/libs/bootstrap/dist/css/bootstrap-grid.min.css" />
 </head>
 <body>
   <!--  Body Wrapper -->
@@ -42,6 +44,42 @@
                 </form>
               </div>
             </div>
+            <form action="{{url_for('admin_blueprint.list')}}" method="GET">
+              <div class="input-group mb-3">
+                  <input type="hidden" name="pageNo" value="1" />
+                  <input type="text" name="q" value="{{query}}" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-dark" type="submit"><i class="ti ti-search"></i> Search</button>
+                  </div>
+                </div>
+            </form>
+            <div class="scrollarea" >
+              <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for item in lists %}
+                      <tr>
+                          <td scope="row">{{item['id']}}</td>
+                          <td>{{item['name']}}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-end">
+                <li class="page-item {{ 'disabled' if currentPageNo == 1  else ''}}"><a class="page-link" href="{{url_for('admin_blueprint.list', pageNo=(currentPageNo-1), q=query)}}">Previous</a></li>
+                {% for pageNo in page_numnbers %}
+                <li class="page-item {{ 'active' if pageNo == currentPageNo else ''}}"><a class="page-link" href="{{url_for('admin_blueprint.list', pageNo=pageNo, q=query)}}">{{pageNo}}</a></li>
+                {% endfor %}
+                <li class="page-item {{ 'disabled' if currentPageNo == lastPageNo  else ''}}"><a class="page-link" href="{{url_for('admin_blueprint.list', pageNo=(currentPageNo+1), q=query)}}">Next</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
         {% include 'footer.html' %}

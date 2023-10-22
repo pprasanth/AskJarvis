@@ -18,3 +18,14 @@ def create_new_tag(tageName):
         'name': tageName
     })
     return True
+
+def listAllTags(search="", pageNo = 1):
+    skip = (pageNo * 10) - 10
+    tags = mongo.db.tags
+    queryString = {}
+    if search:
+        queryString = { 'name': { '$regex': search } }
+    else:
+        queryString = { 'name': { '$exists': True } }
+    filtered = tags.find(queryString)
+    return filtered.count(), list(filtered.skip(skip).limit(10))
