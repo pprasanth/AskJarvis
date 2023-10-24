@@ -7,6 +7,7 @@
   <title>ASK JARVIS - Train JARVIS</title>
   <link rel="shortcut icon" type="image/png" href="/static/images/logos/favicon.ico" />
   <link rel="stylesheet" href="/static/css/styles.min.css" />
+  <link rel="stylesheet" href="/static/css/custom.css" />
 </head>
 <body>
   <!--  Body Wrapper -->
@@ -19,24 +20,14 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
+            <h5 class="card-title fw-semibold mb-4">New Scrap</h5>
             <div class="card">
               <div class="card-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <form action="{{url_for('admin_blueprint.start_scrapping')}}" method="POST">
+                  <div class="form-group row mariginBottom">
+                    <input type="hidden" name="process" value="{{ 'stop' if is_scrapping == True else 'start' }}" />
+                    <button type="submit" class="btn btn-outline-primary m-1">{{ 'Stop Scrapping' if is_scrapping == True else 'Start Scrapping' }}</button>
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>

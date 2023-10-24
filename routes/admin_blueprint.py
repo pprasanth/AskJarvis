@@ -22,3 +22,5 @@ admin_blueprint.route('/jarvis/save_jarvis_conversation', methods=['POST'])(Javi
 
 admin_blueprint.route('/scrapper/new_scrap', methods=['GET'])(ScrapperController.new_scrapper)
 admin_blueprint.route('/scrapper/settings', methods=['GET'])(ScrapperController.scrapper_settings)
+admin_blueprint.route('/scrapper/settings_save', methods=['POST'])(ScrapperController.save_scrapper_settings)
+admin_blueprint.route('/scrapper/start_scrapping', methods=['POST'])(ScrapperController.start_scrapping)
