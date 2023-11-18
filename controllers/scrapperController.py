@@ -1,5 +1,6 @@
 from flask import render_template, request, url_for, redirect, session
 from models.scrapper import ScrapperModel
+import crochet
 
 class ScrapperController():
     def new_scrapper():
