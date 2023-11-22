@@ -22,4 +22,5 @@ To start mongodb, open command line and run ```mongod -dbpath path-to\mongodb-fo
 ## Run the application
 
 1. Activate venv by running command ```venv\Scripts\activate```
-2. ```(venv) c:\\path-to-AIChatbot\: RUN.bat```
+2. ```(venv) c:\\path-to-project\: RUN.bat```
+3. ```c:\\path-to-project\: RUN_MONOGO.bat```
