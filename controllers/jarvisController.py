@@ -18,13 +18,11 @@ class JavisController():
     def train_jarvis():
         tags = JarvisModel.fetch_tags()
         bot_responses = JarvisModel.fetch_response_list()
-        print(bot_responses)
         return render_template('jarvis/train.html', tags=tags, bot_responses=bot_responses)
     
     def save_jarvis():
        if request.method == 'POST' and 'text' in request.form and 'in_response_to' in request.form:
             form = request.form
-            print(form.getlist('tags'))
             isSaved = JarvisModel.create_new_training(
                 form['text'],
                 form['search_text'],

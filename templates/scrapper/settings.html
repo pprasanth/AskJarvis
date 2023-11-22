@@ -22,13 +22,23 @@
             <h5 class="card-title fw-semibold mb-4">Scrapper Settings</h5>
             <div class="card">
               <div class="card-body">
-                <form action="{{url_for('admin_blueprint.save_scrapper_settings')}}" method="POST">
+                <form id="settings" action="{{url_for('admin_blueprint.save_scrapper_settings')}}" method="POST">
+                  <input type="hidden" name="count" value="{{settings|length}}" />
+                  <button type="submit" name="submit" value="save"class="btn btn-primary">Save</button>
+                  <button type="submit" name="submit" value="add_new" class="btn btn-primary">Add new</button>
+                  {% for item in settings %}
                   <div class="mb-3">
                     <label for="website" class="form-label">Website</label>
-                    <input type="text" class="form-control" name="website" id="website" aria-describedby="websitetHelp" value="{{settings.website}}" />
-                    <div id="websitetHelp" class="form-text">Website url.</div>
+                    <input type="hidden" name="id_{{loop.index}}" value="{{item._id}}" />
+                    <input type="text" class="form-control" name="website_{{loop.index}}" id="website" value="{{item.website}}" />
+                    <label for="website" class="form-label">Context</label>
+                    <input type="text" class="form-control" name="context_{{loop.index}}" value="{{item.context}}" />
+                    <br />
+                    <button type="submit" name="delete" value="{{item._id}}" class="btn btn-primary">Del</button>
+                    <hr />
                   </div>
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  {% endfor %}
+                  
                 </form>
               </div>
             </div>
