@@ -2,6 +2,7 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask_session import Session
 from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 app = Flask(__name__)  # flask app object
 app.config.from_object('config')  # Configuring from Python Files
@@ -12,6 +13,10 @@ ask_jarvis = ChatBot(
         storage_adapter=app.config['STORAGE_ADAPTER'],
         database_uri=app.config['MONGO_URI']
     )
+
+trainer = ChatterBotCorpusTrainer(ask_jarvis)
+# trainer.train('chatterbot.corpus.english')
+trainer.train('nlpdata.english')
 
 Session(app)
 

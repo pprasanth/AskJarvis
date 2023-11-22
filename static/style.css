@@ -54,12 +54,19 @@ h3 {
 }
 
 .botText {
+    display: flex;
     color: white;
     text-align: left;
     line-height: 30px;
 }
 
 .botText span {
+    background-color: #AD7AFF;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.botText div {
     background-color: #AD7AFF;
     padding: 10px;
     border-radius: 2px;
